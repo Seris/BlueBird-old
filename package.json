@@ -1,0 +1,24 @@
+{
+  "name": "BlueBird",
+  "main": "webview/bootstrap.html",
+  "version": "0.0.1",
+  "private": true,
+  "window": {
+    "title": "BlueBird",
+    "width": 500,
+    "height": 300,
+    "resizable": false,
+    "frame": false,
+    "toolbar": false,
+    "show": false
+  },
+  "dependencies": {
+    "request": "^2.36.0"
+  },
+  "js-flags": "--harmony_proxies --harmony_collections",
+  "chromium-flags": "--enable-html-imports",
+  "no-edit-menu": true,
+  "devDependencies": {
+    "mocha": "^1.20.1"
+  }
+}
