@@ -22,7 +22,7 @@ BlueBird.users = require(__etc  + '/users.json');
 
 /* Load Gui Interface */
 global.nwGui = window.nwDispatcher.requireNwGui();
-global.nwApp = nwGui.Window.get();
+BlueBird.app = nwGui.Window.get();
 
 /**
  * Load module
@@ -37,4 +37,3 @@ global.loadModule = function(module, entryPoint){
 
 /* Developer Mode */
 if(BlueBird.options.developerMode) loadModule('DeveloperMode');
-

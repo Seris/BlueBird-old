@@ -1,0 +1,6 @@
+{
+  "USER_ID": {
+    "token": "TOKEN",
+    "token_secret": "TOKEN_SECRET"
+  }
+}

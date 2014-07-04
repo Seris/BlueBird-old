@@ -1,2 +1,2 @@
 // Enable Webkit DevTools
-nwApp.showDevTools();
+BlueBird.app.showDevTools();

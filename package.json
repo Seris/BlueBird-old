@@ -13,12 +13,12 @@
     "show": false
   },
   "dependencies": {
-    "request": "^2.36.0"
+    "twitter-request": "^0.5.2"
   },
-  "js-flags": "--harmony_proxies --harmony_collections",
   "chromium-flags": "--enable-html-imports",
   "no-edit-menu": true,
   "devDependencies": {
     "mocha": "^1.20.1"
-  }
+  },
+  "test": "mocha -t 5000"
 }

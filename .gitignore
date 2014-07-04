@@ -1,3 +1,10 @@
-.idea
+# IDEA Project file
+.idea/
 BlueBird.iml
-bluebird.sh
+
+# NodeJS/NPM Related
+npm-debug.log
+node_modules/
+
+# etc
+etc/*.json
