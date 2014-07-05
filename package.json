@@ -18,6 +18,7 @@
   "chromium-flags": "--enable-html-imports",
   "no-edit-menu": true,
   "devDependencies": {
+    "colors": "^0.6.2",
     "mocha": "^1.20.1"
   },
   "test": "mocha -t 5000"

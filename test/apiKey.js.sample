@@ -1,0 +1,13 @@
+/*
+ * API Key for unit test
+ */
+
+global.apiKey = {
+  // Application key
+  consumer_key: "CONSUMER_KEY",
+  consumer_secret: "CONSUMER_SECRET",
+
+  // User key
+  token: "TOKEN",
+  token_secret: "TOKEN_SECRET"
+};

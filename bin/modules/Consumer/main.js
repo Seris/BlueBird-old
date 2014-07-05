@@ -8,14 +8,15 @@ var TwitterRequest = require('twitter-request'),
 /**
  * Consumer
  * @constructor
- * @param {[type]} userid          [User ID]
- * @param {[type]} consumer_key    [Consumer Key]
- * @param {[type]} consumer_secret [Consumer Secret Key]
+ * @param {Integer} userid          [User ID]
+ * @param {String} consumer_key    [Consumer Key]
+ * @param {String} consumer_secret [Consumer Secret Key]
  */
 var Consumer = function(userid, consumer_key, consumer_secret){
   if(!(consumer_key && consumer_secret))
     throw new Error('Consumer() : No consumers keys');
 
+  // -1 = For test
   if(!BlueBird.users[userid])
     throw new Error('Consumer() : No user with ' + userid + ' id is registered !');
 
@@ -62,7 +63,7 @@ Consumer.prototype.destroyTweet = function(tweet, cb) {
 
   return this._treq.request('statuses/destroy', {
     params: {
-      id: tweet.id
+      id: tweet.id_str
     }
   }, this._callback(cb));
 };

@@ -6,5 +6,6 @@ BlueBird.iml
 npm-debug.log
 node_modules/
 
-# etc
+# Key protection
 etc/*.json
+test/apiKey.js
