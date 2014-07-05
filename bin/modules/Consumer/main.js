@@ -2,10 +2,11 @@
  * User
  */
 
-var TwitterRequest = require('twitter-request');
+var TwitterRequest = require('twitter-request'),
+    EntityStream = global.loadModule('EntityStream');
 
 /**
- * Consumer Constructor
+ * Consumer
  * @constructor
  * @param {[type]} userid          [User ID]
  * @param {[type]} consumer_key    [Consumer Key]
@@ -28,22 +29,44 @@ var Consumer = function(userid, consumer_key, consumer_secret){
   };
 
   this._treq = new TwitterRequest(oauth);
+
+  this.stream = null;
 };
 
+
 /**
- * Send an update (tweet)
+ * Send a tweet
  * @method Consumer
  * @param  {Tweet}    tweet  [Tweet Object]
  * @param  {Function} cb     [Callback]
  * @return {Request}         [Request Object]
  */
 Consumer.prototype.update = function(tweet, cb) {
-  if(tweet.constructor !== tweet) throw new TypeError('Consumer#update() - First argument must be an instance of Tweet or a string');
+  // if(tweet.constructor !== tweet) throw new TypeError('Consumer#update() - First argument must be an instance of Tweet or a string');
 
   return this._treq.request('statuses/update', {
     query: tweet.query
-  }, cb);
+  }, this._callback(cb));
 };
+
+
+/**
+ * Remove a tweet
+ * @method Consumer
+ * @param {Tweet} tweet
+ * @param {Function} cb
+ * @returns {Request}
+ */
+Consumer.prototype.destroyTweet = function(tweet, cb) {
+  // if(tweet.constructor !== tweet) throw new TypeError('Consumer#delete() - First argument must be an instance of Tweet or a string');
+
+  return this._treq.request('statuses/destroy', {
+    params: {
+      id: tweet.id
+    }
+  }, this._callback(cb));
+};
+
 
 /**
  * Get timeline of the current user
@@ -52,12 +75,37 @@ Consumer.prototype.update = function(tweet, cb) {
  * @return {Request}
  */
 Consumer.prototype.getTimeline = function(options, cb) {
+  options = options || {};
   if(typeof options === 'function'){
     cb = options; 
     options = {};
   }
 
+  if(this.stream) return this.stream;
 
-}; 
+  this.stream = new EntityStream(
+    this._treq.request('user', options, cb)
+  );
+
+  return this.stream;
+};
+
+
+/**
+ * Common callback process to avoid duplication
+ * @param cb {Function}
+ * @returns {Function}
+ * @private
+ */
+Consumer.prototype._callback = function(cb){
+  cb = cb || function(){};
+  return function(err, res, body){
+    body = JSON.parse(body);
+
+    if(err || body.errors) cb(err || body.errors);
+    else cb(null, body);
+  };
+};
+
 
 module.exports = Consumer;
