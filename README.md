@@ -9,6 +9,7 @@ Download node-webkit on github
     git clone https://github.com/Seris/BlueBird ./BlueBird
     cd BlueBird
     npm install
+    # Now configure files in etc/ (remove .sample) and configure your api key in keys.json, users.json and in test/apiKey.js
     nw ./ # Will start the application
     # nw is the executable of node-webkit
 #### Running test
