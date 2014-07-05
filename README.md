@@ -7,6 +7,7 @@ Download node-webkit on github
 => https://github.com/rogerwang/node-webkit
 
     git clone https://github.com/Seris/BlueBird ./BlueBird
+    cd BlueBird
     npm install
     nw ./ # Will start the application
     # nw is the executable of node-webkit
